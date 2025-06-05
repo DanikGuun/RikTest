@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D62DF1DB1600FEAC7D /* RikAPI */; };
+		5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D92DF1DBDA00FEAC7D /* PinLayout */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5663D4882DF1CA9A00FEAC7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */,
+				5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +132,8 @@
 			);
 			name = RikApp;
 			packageProductDependencies = (
+				5663D4D62DF1DB1600FEAC7D /* RikAPI */,
+				5663D4D92DF1DBDA00FEAC7D /* PinLayout */,
 			);
 			productName = RikApp;
 			productReference = 5663D4712DF1CA9900FEAC7D /* RikApp.app */;
@@ -208,6 +217,10 @@
 			);
 			mainGroup = 5663D4682DF1CA9800FEAC7D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5663D4D52DF1DB1600FEAC7D /* XCLocalSwiftPackageReference "../RikAPI" */,
+				5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5663D4722DF1CA9900FEAC7D /* Products */;
 			projectDirPath = "";
@@ -297,6 +310,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,6 +339,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,6 +584,36 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		5663D4D52DF1DB1600FEAC7D /* XCLocalSwiftPackageReference "../RikAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../RikAPI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5663D4D62DF1DB1600FEAC7D /* RikAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RikAPI;
+		};
+		5663D4D92DF1DBDA00FEAC7D /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5663D4692DF1CA9800FEAC7D /* Project object */;
 }

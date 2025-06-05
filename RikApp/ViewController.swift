@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RikAPI
 
 class ViewController: UIViewController {
 
