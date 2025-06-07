@@ -1,34 +1,33 @@
 
 import UIKit
 
-class GraphicView: UIControl {
+public class GraphicView: UIControl {
     
-    var items: [GraphicItem] = [] { didSet { setNeedsDisplay() } }
-    var insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    public var items: [GraphicItem] = [] { didSet { setNeedsDisplay() } }
+    public var insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) { didSet { setNeedsDisplay() } }
     
     //Graph
-    let pointRadius: CGFloat = 5
-    let graphLineWidth: CGFloat = 3
+    public var pointRadius: CGFloat = 5 { didSet { setNeedsDisplay() } }
+    public var graphLineWidth: CGFloat = 3 { didSet { setNeedsDisplay() } }
     
     //Titles
-    var graphTitleFont = UIFont(name: "Gilroy-Medium", size: 13)!
-    var graphTitleColor: UIColor = .secondaryLabel
-    var spaceBetweenTitlesAndGraph: CGFloat = 10
-
+    public var graphTitleFont = UIFont(name: "Gilroy-Medium", size: 13)!
+    public var graphTitleColor: UIColor = .secondaryLabel { didSet { setNeedsDisplay() } }
+    public var spaceBetweenTitlesAndGraph: CGFloat = 10 { didSet { setNeedsDisplay() } }
     //BackgroundLines
-    var backgroundLineWidth: CGFloat = 2
-    var backgroundLineLength: CGFloat = 12
-    var spaceBetweenBackgroundLines: CGFloat = 8
-    var backgroundLineColor: UIColor = .systemGray4
-    
+    public var backgroundLineWidth: CGFloat = 2 { didSet { setNeedsDisplay() } }
+    public var backgroundLineLength: CGFloat = 12 { didSet { setNeedsDisplay() } }
+    public var spaceBetweenBackgroundLines: CGFloat = 8 { didSet { setNeedsDisplay() } }
+    public var backgroundLineColor: UIColor = .systemGray4 { didSet { setNeedsDisplay() } }
+
     //DescriptionPanel
-    var descriptionContentInset: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    var descriptionTitleFont = UIFont(name: "Gilroy-Semibold", size: 15)!
-    var descriptionSubtitleFont = UIFont(name: "Gilroy-Medium", size: 13)!
-    var spaceBetweenDescriptionItems: CGFloat = 8
-    var descriptionStrokeColor: UIColor = .systemGray4
-    var descriptionSubtitleColor: UIColor = .secondaryLabel
-    var descriptionPanelCornerRadius: CGFloat = 12
+    public var descriptionContentInset: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16) { didSet { setNeedsDisplay() } }
+    public var descriptionTitleFont = UIFont(name: "Gilroy-Semibold", size: 15)! { didSet { setNeedsDisplay() } }
+    public var descriptionSubtitleFont = UIFont(name: "Gilroy-Medium", size: 13)! { didSet { setNeedsDisplay() } }
+    public var spaceBetweenDescriptionItems: CGFloat = 8 { didSet { setNeedsDisplay() } }
+    public var descriptionStrokeColor: UIColor = .systemGray4 { didSet { setNeedsDisplay() } }
+    public var descriptionSubtitleColor: UIColor = .secondaryLabel { didSet { setNeedsDisplay() } }
+    public var descriptionPanelCornerRadius: CGFloat = 12 { didSet { setNeedsDisplay() } }
     
     //Other
     private var graphFrame: CGRect {
@@ -44,11 +43,11 @@ class GraphicView: UIControl {
     private var shouldDrawDescription: Bool = false
     private var lastTouchX: CGFloat = 0
     
-    convenience init() {
+    public convenience init() {
         self.init(frame: .zero)
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: .zero)
     }
     
@@ -56,23 +55,23 @@ class GraphicView: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         shouldDrawDescription = true
         lastTouchX = touches.first?.location(in: self).x ?? 0
         setNeedsDisplay()
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         lastTouchX = touches.first?.location(in: self).x ?? 0
         setNeedsDisplay()
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         shouldDrawDescription = false
         setNeedsDisplay()
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.layoutMargins = insets
 
