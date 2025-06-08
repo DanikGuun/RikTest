@@ -6,15 +6,20 @@
 //
 
 import UIKit
-import RikAPI
+import PinLayout
 
 class ViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let v = DoubleBarChart()
+        view.addSubview(v)
+        v.pin.horizontally(7%).aspectRatio(4).vCenter()
+        v.backgroundColor = .secondarySystemFill
+        v.item = DoubleBarChartItem(title: "18-25", firstItem: DoubleBarItem(title: "10%", color: .manStatistic, percentage: 0), secondItem: DoubleBarItem(title: "25%", color: .womanStatistics, percentage: 1))
     }
-
-
+    
 }
 
