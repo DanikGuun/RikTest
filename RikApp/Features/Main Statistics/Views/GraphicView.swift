@@ -43,6 +43,7 @@ public class GraphicView: UIControl {
     private var shouldDrawDescription: Bool = false
     private var lastTouchX: CGFloat = 0
     
+    //MARK: - Lifecycle
     public convenience init() {
         self.init(frame: .zero)
     }
@@ -71,6 +72,7 @@ public class GraphicView: UIControl {
         setNeedsDisplay()
     }
     
+    //MARK: - Drawing
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.layoutMargins = insets
