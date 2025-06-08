@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D62DF1DB1600FEAC7D /* RikAPI */; };
 		5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D92DF1DBDA00FEAC7D /* PinLayout */; };
+		56B3D8162DF49ED0003F3579 /* ChartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56B3D8152DF49ED0003F3579 /* ChartKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			files = (
 				5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */,
 				5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */,
+				56B3D8162DF49ED0003F3579 /* ChartKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +100,7 @@
 				5663D4732DF1CA9900FEAC7D /* RikApp */,
 				5663D48A2DF1CA9A00FEAC7D /* RikAppTests */,
 				5663D4942DF1CA9A00FEAC7D /* RikAppUITests */,
+				56B3D8142DF49ED0003F3579 /* Frameworks */,
 				5663D4722DF1CA9900FEAC7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +113,13 @@
 				5663D4912DF1CA9A00FEAC7D /* RikAppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		56B3D8142DF49ED0003F3579 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +144,7 @@
 			packageProductDependencies = (
 				5663D4D62DF1DB1600FEAC7D /* RikAPI */,
 				5663D4D92DF1DBDA00FEAC7D /* PinLayout */,
+				56B3D8152DF49ED0003F3579 /* ChartKit */,
 			);
 			productName = RikApp;
 			productReference = 5663D4712DF1CA9900FEAC7D /* RikApp.app */;
@@ -220,6 +231,7 @@
 			packageReferences = (
 				5663D4D52DF1DB1600FEAC7D /* XCLocalSwiftPackageReference "../RikAPI" */,
 				5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */,
+				56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5663D4722DF1CA9900FEAC7D /* Products */;
@@ -590,6 +602,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../RikAPI;
 		};
+		56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../Библиотеки/ChartKit";
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -612,6 +628,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		56B3D8152DF49ED0003F3579 /* ChartKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */;
+			productName = ChartKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
