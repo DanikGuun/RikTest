@@ -5,6 +5,8 @@ import PinLayout
 public class VolumeChangeView: UIView {
     
     public var item = VolumeChangeItem() { didSet { itemHasUpdated() } }
+    public var valueLabelFont = UIFont(name: "Gilroy-Bold", size: 20) { didSet { valueLabel.font = valueLabelFont } }
+    public var subtitleLabelFont = UIFont(name: "Gilroy-Medium", size: 15) { didSet { subtitleLabel.font = subtitleLabelFont } }
     
     private let graphImageView = UIImageView()
     private let valueLabel = UILabel()
@@ -44,7 +46,7 @@ public class VolumeChangeView: UIView {
     
     private func setupValueLabel() {
         addSubview(valueLabel)
-        valueLabel.font = UIFont(name: "Gilroy-Bold", size: 20)
+        valueLabel.font = valueLabelFont
     }
     
     private func setupArrowImageView() {
@@ -53,7 +55,7 @@ public class VolumeChangeView: UIView {
     
     private func setupSubtitleLabel() {
         addSubview(subtitleLabel)
-        subtitleLabel.font = UIFont(name: "Gilroy-Medium", size: 15)
+        subtitleLabel.font = subtitleLabelFont
         subtitleLabel.textColor = .tertiaryLabel
         subtitleLabel.numberOfLines = 3
     }

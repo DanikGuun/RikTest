@@ -11,7 +11,7 @@ public class GraphicView: UIControl {
     public var graphLineWidth: CGFloat = 3 { didSet { setNeedsDisplay() } }
     
     //Titles
-    public var graphTitleFont = UIFont(name: "Gilroy-Medium", size: 13)!
+    public var graphTitleFont = UIFont(name: "Gilroy-Medium", size: 13)! { didSet { setNeedsDisplay() } }
     public var graphTitleColor: UIColor = .secondaryLabel { didSet { setNeedsDisplay() } }
     public var spaceBetweenTitlesAndGraph: CGFloat = 10 { didSet { setNeedsDisplay() } }
     //BackgroundLines

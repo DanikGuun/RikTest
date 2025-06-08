@@ -3,12 +3,12 @@ import UIKit
 
 public class DoubleBar: UIView {
     
-    public var firstItem = DoubleBarItem()
-    public var secondItem = DoubleBarItem()
-    public var titlesFont = UIFont(name: "Gilroy-Regular", size: 10)!
-    public var insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    public var lineWdith: CGFloat = 5
-    public var spaceBetweenBarAndTitle: CGFloat = 3
+    public var firstItem = DoubleBarItem() { didSet { setNeedsDisplay() } }
+    public var secondItem = DoubleBarItem() { didSet { setNeedsDisplay() } }
+    public var titlesFont = UIFont(name: "Gilroy-Regular", size: 10)! { didSet { setNeedsDisplay() } }
+    public var insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) { didSet { setNeedsDisplay() } }
+    public var lineWdith: CGFloat = 5 { didSet { setNeedsDisplay() } }
+    public var spaceBetweenBarAndTitle: CGFloat = 3 { didSet { setNeedsDisplay() } }
     
     private var contentFrame: CGRect { layoutMarginsGuide.layoutFrame }
     

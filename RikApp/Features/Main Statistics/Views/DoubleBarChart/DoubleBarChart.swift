@@ -5,8 +5,8 @@ import PinLayout
 public class DoubleBarChart: UIView {
     
     var item: DoubleBarChartItem = DoubleBarChartItem(title: "18-25") { didSet { itemHasUpdated() } }
-    public var titleFont: UIFont = UIFont(name: "Gilroy-Semibold", size: 16)!
-    public var barTitlesFont: UIFont = UIFont(name: "Gilroy-Regular", size: 10)!
+    public var titleFont: UIFont = UIFont(name: "Gilroy-Semibold", size: 16)! { didSet { updateTitleLabel() } }
+    public var barTitlesFont: UIFont = UIFont(name: "Gilroy-Regular", size: 10)! { didSet { itemHasUpdated() } }
     
     private let titleLabel = UILabel()
     private let doubleBar = DoubleBar()
