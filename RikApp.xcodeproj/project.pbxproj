@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5651BFEB2DFAF7770087C7C2 /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFEA2DFAF7770087C7C2 /* RikAPI */; };
+		5651BFEE2DFAF7890087C7C2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFED2DFAF7890087C7C2 /* RxCocoa */; };
+		5651BFF02DFAF7890087C7C2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFEF2DFAF7890087C7C2 /* RxSwift */; };
+		5651BFF32DFAF7940087C7C2 /* ChartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFF22DFAF7940087C7C2 /* ChartKit */; };
+		5651BFF62DFAF79D0087C7C2 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFF52DFAF79D0087C7C2 /* PinLayout */; };
+		5651BFFA2DFAF7F10087C7C2 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFF92DFAF7F10087C7C2 /* RxTest */; };
+		5651BFFC2DFAF7F50087C7C2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFFB2DFAF7F50087C7C2 /* RxBlocking */; };
 		5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D62DF1DB1600FEAC7D /* RikAPI */; };
-		5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D92DF1DBDA00FEAC7D /* PinLayout */; };
-		56B3D8162DF49ED0003F3579 /* ChartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56B3D8152DF49ED0003F3579 /* ChartKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,9 +76,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5663D4DA2DF1DBDA00FEAC7D /* PinLayout in Frameworks */,
+				5651BFF62DFAF79D0087C7C2 /* PinLayout in Frameworks */,
+				5651BFEE2DFAF7890087C7C2 /* RxCocoa in Frameworks */,
+				5651BFEB2DFAF7770087C7C2 /* RikAPI in Frameworks */,
+				5651BFF32DFAF7940087C7C2 /* ChartKit in Frameworks */,
+				5651BFF02DFAF7890087C7C2 /* RxSwift in Frameworks */,
 				5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */,
-				56B3D8162DF49ED0003F3579 /* ChartKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5651BFFA2DFAF7F10087C7C2 /* RxTest in Frameworks */,
+				5651BFFC2DFAF7F50087C7C2 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +153,11 @@
 			name = RikApp;
 			packageProductDependencies = (
 				5663D4D62DF1DB1600FEAC7D /* RikAPI */,
-				5663D4D92DF1DBDA00FEAC7D /* PinLayout */,
-				56B3D8152DF49ED0003F3579 /* ChartKit */,
+				5651BFEA2DFAF7770087C7C2 /* RikAPI */,
+				5651BFED2DFAF7890087C7C2 /* RxCocoa */,
+				5651BFEF2DFAF7890087C7C2 /* RxSwift */,
+				5651BFF22DFAF7940087C7C2 /* ChartKit */,
+				5651BFF52DFAF79D0087C7C2 /* PinLayout */,
 			);
 			productName = RikApp;
 			productReference = 5663D4712DF1CA9900FEAC7D /* RikApp.app */;
@@ -168,6 +181,8 @@
 			);
 			name = RikAppTests;
 			packageProductDependencies = (
+				5651BFF92DFAF7F10087C7C2 /* RxTest */,
+				5651BFFB2DFAF7F50087C7C2 /* RxBlocking */,
 			);
 			productName = RikAppTests;
 			productReference = 5663D4872DF1CA9A00FEAC7D /* RikAppTests.xctest */;
@@ -229,9 +244,10 @@
 			mainGroup = 5663D4682DF1CA9800FEAC7D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5663D4D52DF1DB1600FEAC7D /* XCLocalSwiftPackageReference "../RikAPI" */,
-				5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */,
-				56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */,
+				5651BFE92DFAF7770087C7C2 /* XCLocalSwiftPackageReference "../RikAPI" */,
+				5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5651BFF12DFAF7940087C7C2 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */,
+				5651BFF42DFAF79D0087C7C2 /* XCRemoteSwiftPackageReference "PinLayout" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5663D4722DF1CA9900FEAC7D /* Products */;
@@ -490,7 +506,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C8NSZM8WF9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ddev.RikAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -509,7 +525,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C8NSZM8WF9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ddev.RikAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -527,6 +543,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C8NSZM8WF9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ddev.RikAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,6 +561,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C8NSZM8WF9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ddev.RikAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -596,18 +614,26 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		5663D4D52DF1DB1600FEAC7D /* XCLocalSwiftPackageReference "../RikAPI" */ = {
+		5651BFE92DFAF7770087C7C2 /* XCLocalSwiftPackageReference "../RikAPI" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../RikAPI;
 		};
-		56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */ = {
+		5651BFF12DFAF7940087C7C2 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../../Библиотеки/ChartKit";
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+		5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift?ysclid=mb2leh29pe521596383";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.0;
+			};
+		};
+		5651BFF42DFAF79D0087C7C2 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/layoutBox/PinLayout";
 			requirement = {
@@ -618,19 +644,42 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5663D4D62DF1DB1600FEAC7D /* RikAPI */ = {
+		5651BFEA2DFAF7770087C7C2 /* RikAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RikAPI;
 		};
-		5663D4D92DF1DBDA00FEAC7D /* PinLayout */ = {
+		5651BFED2DFAF7890087C7C2 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5663D4D82DF1DBDA00FEAC7D /* XCRemoteSwiftPackageReference "PinLayout" */;
+			package = 5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5651BFEF2DFAF7890087C7C2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		5651BFF22DFAF7940087C7C2 /* ChartKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ChartKit;
+		};
+		5651BFF52DFAF79D0087C7C2 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5651BFF42DFAF79D0087C7C2 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
 		};
-		56B3D8152DF49ED0003F3579 /* ChartKit */ = {
+		5651BFF92DFAF7F10087C7C2 /* RxTest */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 56B3D8132DF49EB3003F3579 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */;
-			productName = ChartKit;
+			package = 5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		5651BFFB2DFAF7F50087C7C2 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		5663D4D62DF1DB1600FEAC7D /* RikAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RikAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
