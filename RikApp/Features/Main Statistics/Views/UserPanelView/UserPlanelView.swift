@@ -5,6 +5,7 @@ import PinLayout
 public class UserPlanelView: UIView {
     
     public var item = UserPanelItem() { didSet { itemHasBeenUpdated() } }
+    public override var backgroundColor: UIColor? { didSet { onlineIndicatorView.backgroundColor = backgroundColor } }
     
     private var imageView = UIImageView()
     private var onlineIndicatorView = OnlineIndicatorView()

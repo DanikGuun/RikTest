@@ -4,7 +4,7 @@ import UIKit
 public class OnlineIndicatorView: UIView {
     
     public var isOnline = false { didSet { setNeedsDisplay() } }
-    public var spaceBetweenCircles: CGFloat = 4 { didSet { setNeedsDisplay() } }
+    public var spaceBetweenCircles: CGFloat = 2 { didSet { setNeedsDisplay() } }
     
     private var radius: CGFloat {
         return min(bounds.width, bounds.height) / 2

@@ -27,7 +27,7 @@ public class VolumeChangeView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        graphImageView.pin.start().vertically().aspectRatio(1.9).margin(PEdgeInsets(top: 15, left: 10, bottom: 15, right: 0))
+        graphImageView.pin.start().vertically().aspectRatio(1.7).margin(PEdgeInsets(top: 15, left: 10, bottom: 15, right: 0))
         valueLabel.pin.start(to: graphImageView.edge.end).top().sizeToFit().margin(PEdgeInsets(top: 15, left: 15, bottom: 0, right: 10))
         arrowImageView.pin.topStart(to: valueLabel.anchor.topEnd).bottom(to: valueLabel.edge.bottom).aspectRatio(1)
         subtitleLabel.pin.topStart(to: valueLabel.anchor.bottomStart).bottomEnd().margin(PEdgeInsets(top: 7, left: 0, bottom: 15, right: 0))
@@ -62,7 +62,7 @@ public class VolumeChangeView: UIView {
     
     private func itemHasUpdated() {
         valueLabel.text = "\(item.value)"
-        subtitleLabel.text = item.type.subtitle
+        subtitleLabel.text = item.subtitle ?? item.type.subtitle
         graphImageView.image = item.type.graphImage
         arrowImageView.image = item.type.arrowImage
     }
@@ -71,10 +71,12 @@ public class VolumeChangeView: UIView {
 public struct VolumeChangeItem {
     public var type: ChangeType
     public var value: Int
+    public var subtitle: String?
     
-    public init(type: ChangeType = .increase, value: Int = 0) {
+    public init(type: ChangeType = .increase, value: Int = 0, subtitle: String? = nil) {
         self.type = type
         self.value = value
+        self.subtitle = subtitle
     }
     
     public enum ChangeType {

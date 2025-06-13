@@ -4,6 +4,8 @@ import PinLayout
 
 public class ActionsLineView: UIView{
     
+    public var spacing: CGFloat = 8 { didSet { buttonsStackView.spacing = spacing } }
+    
     private var scrollView = UIScrollView()
     private var buttonsStackView = UIStackView()
     
@@ -54,7 +56,12 @@ public class ActionsLineView: UIView{
         
         buttonsStackView.axis = .horizontal
         buttonsStackView.distribution = .equalSpacing
-        buttonsStackView.spacing = 8
+    }
+    
+    public func selectAction(index: Int) {
+        let button = buttonsStackView.arrangedSubviews[index] as? UIControl
+        button?.isSelected = true
+        button?.sendActions(for: .touchUpInside)
     }
 
     public func addAction(title: String, action: @escaping () -> ()) {
