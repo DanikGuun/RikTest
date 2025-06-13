@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RikAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,7 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
+        
+        let api = RikStatisticsApiAdapter(api: RikApi.getInstance())
+        let model = BaseMainStatisticModel(api: api)
+        let controller = MainStatisticsViewController(model: model)
+        
+        window?.rootViewController = controller
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
