@@ -10,20 +10,20 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     let disposeBag = DisposeBag()
     
     private var output: ModelStatisticOutput?
-    private var lastValues = LastEmittedValues() //чтобы послать события с теми же значениями при обновлении в refresh()
+    private var lastInputValues = LastInputValues() //чтобы послать события с теми же значениями при обновлении в refresh()
     
     init(api: StatisticsAPI) {
         self.api = api
     }
     
     public func transform(input: ModelStatisticInput) -> ModelStatisticOutput {
-        let viewsCount = getViewsCount(input: input.fetchViewsForLastMonth)
-        let viewsByDate = getViewsByDate(input: input.fetchViewsForDateIntervals)
-        let topUsers = getTopUsers(input: input.fetchTopUsers)
-        let sexStatistics = getSexStatistic(input: input.fetchSexStatistics)
-        let ageStatistic = getAgeStatistic(input: input.fetchAgeStatistics)
-        let newSubscribers = getNewSubscribers(input: input.fetchNewSubscribers)
-        let leavedSubscribers = getLeavedSubscribers(input: input.fetchLeavedSubscribers)
+        let viewsCount = getViewsCountRelay(input: input.fetchViewsForLastMonth)
+        let viewsByDate = getViewsByDateRelay(input: input.fetchViewsForDateIntervals)
+        let topUsers = getTopUsersRelay(input: input.fetchTopUsers)
+        let sexStatistics = getSexStatisticRelay(input: input.fetchSexStatistics)
+        let ageStatistic = getAgeStatisticRelay(input: input.fetchAgeStatistics)
+        let newSubscribers = getNewSubscribersRelay(input: input.fetchNewSubscribers)
+        let leavedSubscribers = getLeavedSubscribersRelay(input: input.fetchLeavedSubscribers)
         let refresh = getRefresh(input: input.fetchRefresh)
         let output = ModelStatisticOutput(
             viewsForLastMonth: viewsCount,
@@ -39,7 +39,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
         return output
     }
     
-    private func getViewsCount(input: Observable<Void>) -> BehaviorRelay<Int> {
+    private func getViewsCountRelay(input: Observable<Void>) -> BehaviorRelay<Int> {
         let output = BehaviorRelay(value: 0)
         input.subscribe(onNext: { [weak self] in
             Task {
@@ -56,7 +56,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
         output?.viewsForLastMonth.accept(count)
     }
     
-    private func getViewsByDate(input: Observable<[DateInterval]>) -> BehaviorRelay<[ViewsForDateIntervalStatistic]> {
+    private func getViewsByDateRelay(input: Observable<[DateInterval]>) -> BehaviorRelay<[ViewsForDateIntervalStatistic]> {
         let output = BehaviorRelay<[ViewsForDateIntervalStatistic]>(value: [])
         input.subscribe(onNext: { [weak self] intervals in
             Task {
@@ -74,26 +74,26 @@ public class BaseMainStatisticModel: MainStatisticsModel {
             items.append(ViewsForDateIntervalStatistic(interval: interval, views: count))
         }
         output?.viewsForDateIntervals.accept(items)
-        lastValues.viewsForDateIntervals = intervals
+        lastInputValues.viewsForDateIntervals = intervals
     }
     
-    private func getTopUsers(input: Observable<Int>) -> BehaviorRelay<[StatisticUser]> {
+    private func getTopUsersRelay(input: Observable<Int>) -> BehaviorRelay<[StatisticUser]> {
         let output = BehaviorRelay<[StatisticUser]>(value: [])
         input.subscribe(onNext: { [weak self] count in
             Task {
-                await self?.emitTopUsers(count: count)
+                await self?.emitTopUsersRelay(count: count)
             }
         })
         .disposed(by: disposeBag)
         return output
     }
     
-    private func emitTopUsers(count: Int) async {
+    private func emitTopUsersRelay(count: Int) async {
         let interval = Calendar.current.dateInterval(of: .month, for: Date()) ?? DateInterval()
         let users = await api.getMostInterestedUsers(count: count, dateInterval: interval)
         let statisticUsers = await castUsersToStatisticUsers(users)
         output?.topUsers.accept(statisticUsers)
-        lastValues.topUsers = count
+        lastInputValues.topUsers = count
     }
 
     private func castUsersToStatisticUsers(_ users: [User]) async -> [StatisticUser] {
@@ -108,7 +108,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
         return statisticUsers
     }
     
-    private func getSexStatistic(input: Observable<DateInterval>) -> BehaviorRelay<SexStatistic> {
+    private func getSexStatisticRelay(input: Observable<DateInterval>) -> BehaviorRelay<SexStatistic> {
         let output = BehaviorRelay(value: SexStatistic(man: 0, woman: 0))
         input.subscribe(onNext: { [weak self] interval in
             Task {
@@ -122,10 +122,10 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     private func emitSexStatistic(interval: DateInterval) async {
         let statistic = await api.getSexStatistic(dateInterval: interval)
         output?.sexStatistics.accept(statistic)
-        lastValues.sexStatistics = interval
+        lastInputValues.sexStatistics = interval
     }
     
-    private func getAgeStatistic(input: Observable<([Range<Int>], DateInterval)>) -> BehaviorRelay<[SexAndAgeStatistic]> {
+    private func getAgeStatisticRelay(input: Observable<([Range<Int>], DateInterval)>) -> BehaviorRelay<[SexAndAgeStatistic]> {
         let output = BehaviorRelay<[SexAndAgeStatistic]>(value: [])
         input.subscribe(onNext: { [weak self] (ages, interval) in
             Task {
@@ -139,10 +139,10 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     private func emitAgeStatistic(ages: [Range<Int>], interval: DateInterval) async {
         let statistics = await api.getSexAndAgeStatistic(ages: ages, dateInterval: interval)
         output?.ageStatistics.accept(statistics)
-        lastValues.ageStatistics = (ages, interval)
+        lastInputValues.ageStatistics = (ages, interval)
     }
     
-    private func getNewSubscribers(input: Observable<DateInterval>) -> BehaviorRelay<Int> {
+    private func getNewSubscribersRelay(input: Observable<DateInterval>) -> BehaviorRelay<Int> {
         let output = BehaviorRelay(value: 0)
         input.subscribe(onNext: { [weak self] interval in
             Task {
@@ -156,10 +156,10 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     private func emitNewSubscribers(interval: DateInterval) async {
         let newSubscribers = await api.getNewSubscribers(interval: interval).count
         output?.newSubscribers.accept(newSubscribers)
-        lastValues.newSubscribers = interval
+        lastInputValues.newSubscribers = interval
     }
     
-    private func getLeavedSubscribers(input: Observable<DateInterval>) -> BehaviorRelay<Int> {
+    private func getLeavedSubscribersRelay(input: Observable<DateInterval>) -> BehaviorRelay<Int> {
         let output = BehaviorRelay(value: 0)
         input.subscribe(onNext: { [weak self] interval in
             Task {
@@ -173,7 +173,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     private func emitLeavedSubscribers(interval: DateInterval) async {
         let leavedSubscribers = await api.getLeavedSubscribers(interval: interval).count
         output?.leavedSubscribers.accept(leavedSubscribers)
-        lastValues.leavedSubscribers = interval
+        lastInputValues.leavedSubscribers = interval
     }
     
     private func getRefresh(input: Observable<Void>) -> BehaviorRelay<Void> {
@@ -183,12 +183,12 @@ public class BaseMainStatisticModel: MainStatisticsModel {
             Task {
                 await self.api.refresh()
                 await self.emitViewsCountForLastMonth()
-                await self.emitViewsByDate(intervals: self.lastValues.viewsForDateIntervals)
-                await self.emitTopUsers(count: self.lastValues.topUsers)
-                await self.emitSexStatistic(interval: self.lastValues.sexStatistics)
-                await self.emitAgeStatistic(ages: self.lastValues.ageStatistics.0, interval: self.lastValues.ageStatistics.1)
-                await self.emitNewSubscribers(interval: self.lastValues.newSubscribers)
-                await self.emitLeavedSubscribers(interval: self.lastValues.leavedSubscribers)
+                await self.emitViewsByDate(intervals: self.lastInputValues.viewsForDateIntervals)
+                await self.emitTopUsersRelay(count: self.lastInputValues.topUsers)
+                await self.emitSexStatistic(interval: self.lastInputValues.sexStatistics)
+                await self.emitAgeStatistic(ages: self.lastInputValues.ageStatistics.0, interval: self.lastInputValues.ageStatistics.1)
+                await self.emitNewSubscribers(interval: self.lastInputValues.newSubscribers)
+                await self.emitLeavedSubscribers(interval: self.lastInputValues.leavedSubscribers)
                 output.accept(())
             }
         })
@@ -197,7 +197,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     }
 }
 
-fileprivate struct LastEmittedValues {
+fileprivate struct LastInputValues {
     var viewsForDateIntervals: [DateInterval] = []
     var topUsers: Int = 0
     var sexStatistics: DateInterval = DateInterval()
