@@ -86,13 +86,23 @@ public enum DateIntervalForVisitors {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         
+        let systemLanguage = Locale.preferredLanguages.first ?? "en"
+        let locale = Locale(identifier: systemLanguage)
+        formatter.locale = locale
+        
         let string = formatter.string(from: date)
         return string
     }
     
     private func formattedInterval(_ interval: DateInterval, format: String) -> String {
         let formatter = DateIntervalFormatter()
+        formatter.locale = Locale.current
         formatter.dateTemplate = format
+        
+        let systemLanguage = Locale.preferredLanguages.first ?? "en"
+        let locale = Locale(identifier: systemLanguage)
+        formatter.locale = locale
+        
         let string = formatter.string(from: interval)
         return string ?? "None"
     }
