@@ -4,9 +4,10 @@ import RxSwift
 import RxCocoa
 import PinLayout
 
-class MainStatisticsViewController: UIViewController {
-
+class MainStatisticsViewController: UIViewController, Coordinatable {
+    
     var model: MainStatisticsModel!
+    var coordinator: (any Coordinator)?
     
     let disposeBag = DisposeBag()
     private var fetchViewsForDatesRelay = BehaviorRelay<DateIntervalForVisitors>(value: .days)
@@ -44,6 +45,7 @@ class MainStatisticsViewController: UIViewController {
     }
     
     private func setup() {
+        self.navigationItem.title = "Статистика"
         setupMainStackView()
         setupVisitorsSection()
         addSpaceView(height: DC.interSectionSpacing)

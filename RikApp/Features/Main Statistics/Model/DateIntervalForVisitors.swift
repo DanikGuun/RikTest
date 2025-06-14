@@ -30,7 +30,7 @@ public enum DateIntervalForVisitors {
     }
     
     private func getIntervalsForWeekVisitors() -> [DateInterval] {
-        return getIntervalsForDateComponent(.weekOfYear, count: 3)
+        return getIntervalsForDateComponent(.weekOfYear, count: 4)
     }
     
     private func getIntervalsForMonthVisitors() -> [DateInterval] {

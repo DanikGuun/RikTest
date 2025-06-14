@@ -20,11 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         
-        let api = RikStatisticsApiAdapter(api: RikApi.getInstance())
-        let model = BaseMainStatisticModel(api: api)
-        let controller = MainStatisticsViewController(model: model)
+        let viewControllersFactory = BaseViewControllerFactory()
+        let coordinator = BaseCoordinator(viewControllerFactory: viewControllersFactory)
         
-        window?.rootViewController = controller
+        window?.rootViewController = coordinator.mainViewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
