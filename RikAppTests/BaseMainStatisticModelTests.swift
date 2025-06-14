@@ -293,18 +293,3 @@ class MockApi: StatisticsAPI {
     }
     
 }
-
-extension ModelStatisticInput {
-    static var empty: ModelStatisticInput {
-        return ModelStatisticInput(
-            fetchViewsForLastMonth: BehaviorSubject<Void>(value: ()),
-            fetchViewsForDateIntervals: BehaviorSubject<[DateInterval]>(value: []),
-            fetchTopUsers: BehaviorSubject<Int>(value: 0),
-            fetchSexStatistics: BehaviorSubject(value: DateInterval()),
-            fetchAgeStatistics: BehaviorSubject(value: ([], DateInterval())),
-            fetchNewSubscribers: BehaviorSubject<DateInterval>(value: DateInterval()),
-            fetchLeavedSubscribers: BehaviorSubject<DateInterval>(value: DateInterval()),
-            fetchRefresh: Observable<Void>.empty()
-        )
-    }
-}

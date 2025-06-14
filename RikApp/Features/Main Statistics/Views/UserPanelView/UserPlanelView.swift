@@ -75,7 +75,7 @@ public class UserPlanelView: UIView {
     
     private func setupDisclosureView() {
         addSubview(disclosureView)
-        disclosureView.image = UIImage(systemName: "chevron.right")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 22, weight: .bold))
+        disclosureView.image = UIImage(systemName: "chevron.right")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
         disclosureView.tintColor = .systemGray2
         disclosureView.contentMode = .center
     }

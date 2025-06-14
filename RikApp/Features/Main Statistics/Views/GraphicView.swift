@@ -170,7 +170,7 @@ public class GraphicView: UIControl {
     }
     
     private func drawDescriptionBackgroundLineIfNeeded() {
-        guard shouldDrawDescription else { return }
+        guard shouldDrawDescription, items.count > 0 else { return }
         let graphFrame = graphFrame
         let x = getNearestToTouchGraphPointX()
         var y = graphFrame.minY
@@ -188,7 +188,7 @@ public class GraphicView: UIControl {
     }
     
     private func drawDescriptionPanelIfNeeded() {
-        guard shouldDrawDescription else { return }
+        guard shouldDrawDescription, items.count > 0 else { return }
         let rect = getDescriptionPanelFrame()
         let path = UIBezierPath(roundedRect: rect, cornerRadius: descriptionPanelCornerRadius)
         path.lineWidth = backgroundLineWidth

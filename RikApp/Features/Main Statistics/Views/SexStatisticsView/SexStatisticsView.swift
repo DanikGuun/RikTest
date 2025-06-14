@@ -73,14 +73,14 @@ public class SexStatisticsView: UIView {
     
     private func updateManAdditionalInfo() {
         let percantage = Double(item.man) / Double(item.man + item.woman)
-        manAdditionalInfo.text = "Мужчины " + percantage.formatted(.percent.precision(.significantDigits(3)))
+        manAdditionalInfo.text = "Мужчины " + percantage.formatted(.percent.precision(.significantDigits(2)))
         manAdditionalInfo.font = font
         manAdditionalInfo.tintColor = manColor
     }
     
     private func updateWomanAdditionalInfo() {
         let percantage = Double(item.woman) / Double(item.man + item.woman)
-        womanAdditionalInfo.text = "Женщины " + percantage.formatted(.percent.precision(.significantDigits(3)))
+        womanAdditionalInfo.text = "Женщины " + percantage.formatted(.percent.precision(.significantDigits(2)))
         womanAdditionalInfo.font = font
         womanAdditionalInfo.tintColor = womanColor
     }

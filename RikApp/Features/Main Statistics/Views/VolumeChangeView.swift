@@ -62,7 +62,7 @@ public class VolumeChangeView: UIView {
     
     private func itemHasUpdated() {
         valueLabel.text = "\(item.value)"
-        subtitleLabel.text = item.subtitle ?? item.type.subtitle
+        subtitleLabel.text = item.subtitle ?? item.type.subscribeSubtitle
         graphImageView.image = item.type.graphImage
         arrowImageView.image = item.type.arrowImage
     }
@@ -92,7 +92,14 @@ public struct VolumeChangeItem {
             return UIImage(resource: ImageResource(name: name, bundle: .main))
         }
         
-        public var subtitle: String {
+        public var visitorsSubtitle: String {
+            switch self {
+            case .increase: return "Количество посетителей в этом месяце выросло"
+            case .decrease: return "Количество посетителей в этом месяце уменьшилось"
+            }
+        }
+        
+        public var subscribeSubtitle: String {
             switch self {
             case .increase: return "Новые наблюдатели в этом месяце"
             case .decrease: return "Пользователей перестали за Вами наблюдать"

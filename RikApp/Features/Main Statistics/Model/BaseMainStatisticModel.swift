@@ -1,5 +1,6 @@
 
 import UIKit
+import RikAPI
 import RxSwift
 import RxCocoa
 import Foundation
@@ -16,6 +17,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
         self.api = api
     }
     
+    //MARK: - Rx
     public func transform(input: ModelStatisticInput) -> ModelStatisticOutput {
         let viewsCount = getViewsCountRelay(input: input.fetchViewsForLastMonth)
         let viewsByDate = getViewsByDateRelay(input: input.fetchViewsForDateIntervals)
@@ -56,25 +58,27 @@ public class BaseMainStatisticModel: MainStatisticsModel {
         output?.viewsForLastMonth.accept(count)
     }
     
-    private func getViewsByDateRelay(input: Observable<[DateInterval]>) -> BehaviorRelay<[ViewsForDateIntervalStatistic]> {
+    private func getViewsByDateRelay(input: Observable<DateIntervalForVisitors>) -> BehaviorRelay<[ViewsForDateIntervalStatistic]> {
         let output = BehaviorRelay<[ViewsForDateIntervalStatistic]>(value: [])
-        input.subscribe(onNext: { [weak self] intervals in
+        input.subscribe(onNext: { [weak self] intervalType in
             Task {
-                await self?.emitViewsByDate(intervals: intervals)
+                await self?.emitViewsByDate(intervalType: intervalType)
             }
         })
         .disposed(by: disposeBag)
         return output
     }
     
-    private func emitViewsByDate(intervals: [DateInterval]) async {
+    private func emitViewsByDate(intervalType: DateIntervalForVisitors) async {
         var items: [ViewsForDateIntervalStatistic] = []
-        for interval in intervals {
+        for interval in intervalType.intervals.sorted { $0.start < $1.start } {
             let count = await api.getViewsCount(dateInterval: interval)
-            items.append(ViewsForDateIntervalStatistic(interval: interval, views: count))
+            let numeric = intervalType.numericFormatted(interval)
+            let compact = intervalType.textFormatted(interval)
+            items.append(ViewsForDateIntervalStatistic(numericInterval: numeric, compactInterval: compact, views: count))
         }
         output?.viewsForDateIntervals.accept(items)
-        lastInputValues.viewsForDateIntervals = intervals
+        lastInputValues.viewsForDateIntervals = intervalType
     }
     
     private func getTopUsersRelay(input: Observable<Int>) -> BehaviorRelay<[StatisticUser]> {
@@ -89,7 +93,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
     }
     
     private func emitTopUsersRelay(count: Int) async {
-        let interval = Calendar.current.dateInterval(of: .month, for: Date()) ?? DateInterval()
+        let interval = Calendar.current.dateInterval(of: .year, for: RikApi.originDate) ?? DateInterval()
         let users = await api.getMostInterestedUsers(count: count, dateInterval: interval)
         let statisticUsers = await castUsersToStatisticUsers(users)
         output?.topUsers.accept(statisticUsers)
@@ -183,7 +187,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
             Task {
                 await self.api.refresh()
                 await self.emitViewsCountForLastMonth()
-                await self.emitViewsByDate(intervals: self.lastInputValues.viewsForDateIntervals)
+                await self.emitViewsByDate(intervalType: self.lastInputValues.viewsForDateIntervals)
                 await self.emitTopUsersRelay(count: self.lastInputValues.topUsers)
                 await self.emitSexStatistic(interval: self.lastInputValues.sexStatistics)
                 await self.emitAgeStatistic(ages: self.lastInputValues.ageStatistics.0, interval: self.lastInputValues.ageStatistics.1)
@@ -198,7 +202,7 @@ public class BaseMainStatisticModel: MainStatisticsModel {
 }
 
 fileprivate struct LastInputValues {
-    var viewsForDateIntervals: [DateInterval] = []
+    var viewsForDateIntervals: DateIntervalForVisitors = .days
     var topUsers: Int = 0
     var sexStatistics: DateInterval = DateInterval()
     var ageStatistics: ([Range<Int>], DateInterval) = ([], DateInterval())

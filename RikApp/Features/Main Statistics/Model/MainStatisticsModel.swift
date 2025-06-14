@@ -11,13 +11,27 @@ public protocol MainStatisticsModel {
 
 public struct ModelStatisticInput {
     var fetchViewsForLastMonth: Observable<Void>
-    var fetchViewsForDateIntervals: Observable<[DateInterval]>
+    var fetchViewsForDateIntervals: Observable<DateIntervalForVisitors>
     var fetchTopUsers: Observable<Int>
     var fetchSexStatistics: Observable<DateInterval>
     var fetchAgeStatistics: Observable<([Range<Int>], DateInterval)>
     var fetchNewSubscribers: Observable<DateInterval>
     var fetchLeavedSubscribers: Observable<DateInterval>
     var fetchRefresh: Observable<Void>
+    
+    static var empty: ModelStatisticInput {
+        return ModelStatisticInput(
+            fetchViewsForLastMonth: BehaviorSubject<Void>(value: ()),
+            fetchViewsForDateIntervals: BehaviorSubject<DateIntervalForVisitors>(value: .days),
+            fetchTopUsers: BehaviorSubject<Int>(value: 0),
+            fetchSexStatistics: BehaviorSubject(value: DateInterval()),
+            fetchAgeStatistics: BehaviorSubject(value: ([], DateInterval())),
+            fetchNewSubscribers: BehaviorSubject<DateInterval>(value: DateInterval()),
+            fetchLeavedSubscribers: BehaviorSubject<DateInterval>(value: DateInterval()),
+            fetchRefresh: Observable<Void>.empty()
+        )
+    }
+
 }
 
 public struct ModelStatisticOutput {
@@ -29,6 +43,19 @@ public struct ModelStatisticOutput {
     var newSubscribers: BehaviorRelay<Int>
     var leavedSubscribers: BehaviorRelay<Int>
     var refreshDone: BehaviorRelay<Void>
+    
+    static var empty: ModelStatisticOutput {
+        return ModelStatisticOutput(
+            viewsForLastMonth: BehaviorRelay(value: 0),
+            viewsForDateIntervals: BehaviorRelay(value: []),
+            topUsers: BehaviorRelay(value: []),
+            sexStatistics: BehaviorRelay(value: SexStatistic(man: 0, woman: 0)),
+            ageStatistics: BehaviorRelay(value: []),
+            newSubscribers: BehaviorRelay(value: 0),
+            leavedSubscribers: BehaviorRelay(value: 0),
+            refreshDone: BehaviorRelay(value: ())
+            )
+    }
 }
 
 public struct StatisticUser: Equatable {
@@ -50,6 +77,7 @@ public struct SexAndAgeStatistic: Equatable  {
 }
 
 public struct ViewsForDateIntervalStatistic: Equatable  {
-    var interval: DateInterval
+    var numericInterval: String
+    var compactInterval: String
     var views: Int
 }
