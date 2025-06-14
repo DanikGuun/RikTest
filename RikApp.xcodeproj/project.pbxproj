@@ -15,6 +15,8 @@
 		5651BFFA2DFAF7F10087C7C2 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFF92DFAF7F10087C7C2 /* RxTest */; };
 		5651BFFC2DFAF7F50087C7C2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 5651BFFB2DFAF7F50087C7C2 /* RxBlocking */; };
 		5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5663D4D62DF1DB1600FEAC7D /* RikAPI */; };
+		5675CE092DFDB419002BE253 /* ChartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5675CE082DFDB419002BE253 /* ChartKit */; };
+		5675CE0C2DFDB45B002BE253 /* RikAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5675CE0B2DFDB45B002BE253 /* RikAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +82,9 @@
 				5651BFEE2DFAF7890087C7C2 /* RxCocoa in Frameworks */,
 				5651BFEB2DFAF7770087C7C2 /* RikAPI in Frameworks */,
 				5651BFF32DFAF7940087C7C2 /* ChartKit in Frameworks */,
+				5675CE092DFDB419002BE253 /* ChartKit in Frameworks */,
 				5651BFF02DFAF7890087C7C2 /* RxSwift in Frameworks */,
+				5675CE0C2DFDB45B002BE253 /* RikAPI in Frameworks */,
 				5663D4D72DF1DB1600FEAC7D /* RikAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +162,8 @@
 				5651BFEF2DFAF7890087C7C2 /* RxSwift */,
 				5651BFF22DFAF7940087C7C2 /* ChartKit */,
 				5651BFF52DFAF79D0087C7C2 /* PinLayout */,
+				5675CE082DFDB419002BE253 /* ChartKit */,
+				5675CE0B2DFDB45B002BE253 /* RikAPI */,
 			);
 			productName = RikApp;
 			productReference = 5663D4712DF1CA9900FEAC7D /* RikApp.app */;
@@ -244,10 +250,10 @@
 			mainGroup = 5663D4682DF1CA9800FEAC7D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5651BFE92DFAF7770087C7C2 /* XCLocalSwiftPackageReference "../RikAPI" */,
 				5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				5651BFF12DFAF7940087C7C2 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */,
 				5651BFF42DFAF79D0087C7C2 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				5675CE072DFDB419002BE253 /* XCRemoteSwiftPackageReference "ChartKit" */,
+				5675CE0A2DFDB45B002BE253 /* XCRemoteSwiftPackageReference "RikAPI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5663D4722DF1CA9900FEAC7D /* Products */;
@@ -613,17 +619,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		5651BFE92DFAF7770087C7C2 /* XCLocalSwiftPackageReference "../RikAPI" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../RikAPI;
-		};
-		5651BFF12DFAF7940087C7C2 /* XCLocalSwiftPackageReference "../../Библиотеки/ChartKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../Библиотеки/ChartKit";
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		5651BFEC2DFAF7890087C7C2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -639,6 +634,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.10.5;
+			};
+		};
+		5675CE072DFDB419002BE253 /* XCRemoteSwiftPackageReference "ChartKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DanikGuun/ChartKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		5675CE0A2DFDB45B002BE253 /* XCRemoteSwiftPackageReference "RikAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DanikGuun/RikAPI";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -679,6 +690,16 @@
 		};
 		5663D4D62DF1DB1600FEAC7D /* RikAPI */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = RikAPI;
+		};
+		5675CE082DFDB419002BE253 /* ChartKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5675CE072DFDB419002BE253 /* XCRemoteSwiftPackageReference "ChartKit" */;
+			productName = ChartKit;
+		};
+		5675CE0B2DFDB45B002BE253 /* RikAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5675CE0A2DFDB45B002BE253 /* XCRemoteSwiftPackageReference "RikAPI" */;
 			productName = RikAPI;
 		};
 /* End XCSwiftPackageProductDependency section */

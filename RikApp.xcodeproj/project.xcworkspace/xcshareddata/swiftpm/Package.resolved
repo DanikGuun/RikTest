@@ -1,6 +1,15 @@
 {
-  "originHash" : "0d59b5944dc7c4d2cb664e280e1ca737a79b1d9ee03ad4905b7234350d0984bf",
+  "originHash" : "0f34bbd83316e5cafcb07f31bd862568f2f389618da7a4e9a558ecbf1a0b81ed",
   "pins" : [
+    {
+      "identity" : "chartkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DanikGuun/ChartKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e94d7fabf106c8ad7169476b99c850111e8d9579"
+      }
+    },
     {
       "identity" : "pinlayout",
       "kind" : "remoteSourceControl",
@@ -26,6 +35,15 @@
       "state" : {
         "revision" : "f8d74e90eafa2ac0e760bc674b49f40b593b1483",
         "version" : "20.0.2"
+      }
+    },
+    {
+      "identity" : "rikapi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DanikGuun/RikAPI",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ed4c75c897bf29a0389d255722f340a2ee78bc00"
       }
     },
     {
