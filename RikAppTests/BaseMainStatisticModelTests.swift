@@ -57,10 +57,11 @@ final class BaseMainStatisticModelTests: XCTestCase {
         let interval2 = DateInterval(start: Date().addingTimeInterval(100), end: Date().addingTimeInterval(200))
         let views1 = 10
         let views2 = 20
+        let dateInterval = DateIntervalForVisitors.custom(intervals: [interval1, interval2])
         mockApi.viewsForDateIntervals = Dictionary<DateInterval?, Int>(uniqueKeysWithValues: [(interval1, views1), (interval2, views2)])
         
         let observer = scheduler.createObserver([ViewsForDateIntervalStatistic].self)
-        let mockInput = scheduler.createColdObservable([.next(10, [interval1, interval2])])
+        let mockInput = scheduler.createColdObservable([.next(10, dateInterval)])
         var input = ModelStatisticInput.empty
         input.fetchViewsForDateIntervals = mockInput.asObservable()
         
@@ -73,8 +74,16 @@ final class BaseMainStatisticModelTests: XCTestCase {
         scheduler.start()
         
         wait(for: [exp], timeout: 1)
-        let stat1 = ViewsForDateIntervalStatistic(interval: interval1, views: views1)
-        let stat2 = ViewsForDateIntervalStatistic(interval: interval2, views: views2)
+        let stat1 = ViewsForDateIntervalStatistic(
+            numericInterval: dateInterval.numericFormatted(interval1),
+            compactInterval: dateInterval.textFormatted(interval1),
+            views: views1
+        )
+        let stat2 = ViewsForDateIntervalStatistic(
+            numericInterval: dateInterval.numericFormatted(interval2),
+            compactInterval: dateInterval.textFormatted(interval2),
+            views: views2
+        )
         XCTAssertEqual(observer.events, [.next(0, []), .next(10, [stat1, stat2])])
     }
     

@@ -6,6 +6,7 @@ public enum DateIntervalForVisitors {
     case days
     case weeks
     case months
+    case custom(intervals: [DateInterval])
     
     static let allCases: [DateIntervalForVisitors] = [.days, .weeks, .months]
     
@@ -14,6 +15,7 @@ public enum DateIntervalForVisitors {
         case .days: "По дням"
         case .weeks: "По неделям"
         case .months: "По месяцам"
+        case .custom(_): "Пользовательский"
         }
     }
     
@@ -22,6 +24,7 @@ public enum DateIntervalForVisitors {
         case .days: return getIntervalsForDayVisitors()
         case .weeks: return getIntervalsForWeekVisitors()
         case .months: return getIntervalsForMonthVisitors()
+        case .custom(let intervals): return intervals
         }
     }
     
@@ -55,6 +58,7 @@ public enum DateIntervalForVisitors {
         case .days: return "dd.MM"
         case .weeks: return "dd.MMM"
         case .months: return "MM.yy"
+        case .custom(_): return "dd.MM"
         }
     }
     
@@ -63,6 +67,7 @@ public enum DateIntervalForVisitors {
         case .days: return "d MMMM"
         case .weeks: return "d MMMM"
         case .months: return "MMMM yyyy"
+        case .custom(_): return "d MMMM"
         }
     }
     
@@ -71,6 +76,7 @@ public enum DateIntervalForVisitors {
         case .days: formattedDate(interval.start, format: self.numericFormat)
         case .weeks: formattedInterval(interval, format: self.numericFormat)
         case .months: formattedDate(interval.start, format: self.numericFormat)
+        case .custom(_): formattedInterval(interval, format: self.numericFormat)
         }
     }
     
@@ -79,6 +85,7 @@ public enum DateIntervalForVisitors {
         case .days: formattedDate(interval.start, format: self.textFormat)
         case .weeks: formattedInterval(interval, format: self.textFormat)
         case .months: formattedDate(interval.start, format: self.textFormat)
+        case .custom(_): formattedInterval(interval, format: self.numericFormat)
         }
     }
     
